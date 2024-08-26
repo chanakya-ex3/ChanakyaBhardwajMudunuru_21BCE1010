@@ -32,91 +32,182 @@ function checkWin(game, move) {
   }
 }
 
-function movePawn(position, direction) {
-  switch (direction) {
-    case 'L':
-      if (position.x > 0) {
-        position.x -= 1;
-      }
-      break;
-    case 'R':
-      if (position.x < 4) {
-        position.x += 1;
-      }
-      break;
-    case 'F':
-      if (position.y < 4) {
-        position.y += 1;
-      }
-      break;
-    case 'B':
-      if (position.y > 0) {
-        position.y -= 1;
-      }
-      break;
-    default:
-      console.error('Invalid direction for Pawn:', direction);
-      return;
+function movePawn(position, direction, turn) {
+  if (turn === 'A') {
+    switch (direction) {
+      case 'L':
+        if (position.x > 0) {
+          position.x -= 1;
+        }
+        break;
+      case 'R':
+        if (position.x < 4) {
+          position.x += 1;
+        }
+        break;
+      case 'F':
+        if (position.y < 4) {
+          position.y += 1;
+        }
+        break;
+      case 'B':
+        if (position.y > 0) {
+          position.y -= 1;
+        }
+        break;
+      default:
+        console.error('Invalid direction for Pawn:', direction);
+        return;
+    }
+  }
+  else{
+    switch (direction) {
+      case 'L':
+        if (position.x > 0) {
+          position.x -= 1;
+        }
+        break;
+      case 'R':
+        if (position.x < 4) {
+          position.x += 1;
+        }
+        break;
+      case 'F':
+        if (position.y > 0) {
+          position.y -= 1;
+        }
+        break;
+      case 'B':
+        if (position.y < 4) {
+          position.y += 1;
+        }
+        break;
+      default:
+        console.error('Invalid direction for Pawn:', direction);
+        return;
+    }
   }
 }
 
-function moveHero1(position, direction) {
-  switch (direction) {
-    case 'L':
-      if (position.x > 1) {
-        position.x -= 2;
-      }
-      break;
-    case 'R':
-      if (position.x < 3) {
-        position.x += 2;
-      }
-      break;
-    case 'F':
-      if (position.y < 3) {
-        position.y += 2;
-      }
-      break;
-    case 'B':
-      if (position.y > 1) {
-        position.y -= 2;
-      }
-      break;
-    default:
-      console.error('Invalid direction for Hero1:', direction);
-      return;
+function moveHero1(position, direction, turn) {
+  if(turn === 'A'){
+    switch (direction) {
+      case 'L':
+        if (position.x > 1) {
+          position.x -= 2;
+        }
+        break;
+      case 'R':
+        if (position.x < 3) {
+          position.x += 2;
+        }
+        break;
+      case 'F':
+        if (position.y < 3) {
+          position.y += 2;
+        }
+        break;
+      case 'B':
+        if (position.y > 1) {
+          position.y -= 2;
+        }
+        break;
+      default:
+        console.error('Invalid direction for Hero1:', direction);
+        return;
+    }
+  }
+  else{
+    switch (direction) {
+      case 'L':
+        if (position.x > 1) {
+          position.x -= 2;
+        }
+        break;
+      case 'R':
+        if (position.x < 3) {
+          position.x += 2;
+        }
+        break;
+      case 'F':
+        if (position.y > 1) {
+          position.y -= 2;
+        }
+        break;
+      case 'B':
+        if (position.y < 3) {
+          position.y += 2;
+        }
+        break;
+      default:
+        console.error('Invalid direction for Hero1:', direction);
+        return;
+    }
   }
 }
 
-function moveHero2(position, direction) {
-  switch (direction) {
-    case 'FL':
-      if (position.x > 0 && position.y < 3) {
-        position.x -= 1;
-        position.y += 1;
-      }
-      break;
-    case 'FR':
-      if (position.x < 3 && position.y < 3) {
-        position.x += 1;
-        position.y += 1;
-      }
-      break;
-    case 'BL':
-      if (position.x > 0 && position.y > 0) {
-        position.x -= 1;
-        position.y -= 1;
-      }
-      break;
-    case 'BR':
-      if (position.x < 3 && position.y > 0) {
-        position.x += 1;
-        position.y -= 1;
-      }
-      break;
-    default:
-      console.error('Invalid direction for Hero2:', direction);
-      return;
+function moveHero2(position, direction, turn) {
+  if(turn === 'A'){
+    switch (direction) {
+      case 'FL':
+        if (position.x > 0 && position.y < 3) {
+          position.x -= 1;
+          position.y += 1;
+        }
+        break;
+      case 'FR':
+        if (position.x < 3 && position.y < 3) {
+          position.x += 1;
+          position.y += 1;
+        }
+        break;
+      case 'BL':
+        if (position.x > 0 && position.y > 0) {
+          position.x -= 1;
+          position.y -= 1;
+        }
+        break;
+      case 'BR':
+        if (position.x < 3 && position.y > 0) {
+          position.x += 1;
+          position.y -= 1;
+        }
+        break;
+      default:
+        console.error('Invalid direction for Hero2:', direction);
+        return;
+    }
+  }
+  else{
+    switch (direction) {
+      case 'FL':
+        if (position.x > 0 && position.y > 1) {
+          position.x -= 1;
+          position.y -= 1;
+        }
+        break;
+      case 'FR':
+        if (position.x < 3 && position.y > 1) {
+          position.x += 1;
+          position.y -= 1;
+        }
+        break;
+      case 'BL':
+        if (position.x > 0 && position.y < 3) {
+          position.x -= 1;
+          position.y += 1;
+        }
+        break;
+      case 'BR':
+        if (position.x < 3 && position.y < 3) {
+          position.x += 1;
+          position.y += 1;
+        }
+        break;
+      default:
+        console.error('Invalid direction for Hero2:', direction);
+        return;
+    }
   }
 }
 
@@ -127,55 +218,60 @@ function play(game, move) {
     move.character === '2' ||
     move.character === '3'
   ) {
-    let position = { x: 0, y: 0 };
+    let position = { x: null, y: null };
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
-        if (game.board[i][j] === `A-P${move.character}`) {
+        if (game.board[i][j] === `${game.turn}-P${move.character}`) {
           position.x = j;
           position.y = i;
         }
       }
     }
-    game.board[position.y][position.x] = null;
-    movePawn(position, move.move.toUpperCase());
-    game.board[position.y][position.x] = `A-P${move.character}`;
-    console.log(game.board);
+    if(position.x !== null && position.y !== null){
+      game.board[position.y][position.x] = null;
+      movePawn(position, move.move.toUpperCase(), game.turn);
+      game.board[position.y][position.x] = `${game.turn}-P${move.character}`;
+      console.log(game.board);
+    }
   }
   if (move.character === '4') {
-    let position = { x: 0, y: 0 };
+    let position = { x: null, y: null };
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
-        if (game.board[i][j] === `A-H1`) {
+        if (game.board[i][j] === `${game.turn}-H1`) {
           position.x = j;
           position.y = i;
         }
       }
     }
-    game.board[position.y][position.x] = null;
-    moveHero1(position, move.move.toUpperCase());
-    game.board[position.y][position.x] = `A-H1`;
-    console.log(game.board);
+    if(position.x !== null && position.y !== null){
+      game.board[position.y][position.x] = null;
+      moveHero1(position, move.move.toUpperCase(), game.turn);
+      game.board[position.y][position.x] = `${game.turn}-H1`;
+      console.log(game.board);
+    }
   }
   if (move.character === '5') {
-    let position = { x: 0, y: 0 };
+    let position = { x: null, y: null };
     for (let i = 0; i < 5; i++) {
       for (let j = 0; j < 5; j++) {
-        if (game.board[i][j] === `A-H2`) {
+        if (game.board[i][j] === `${game.turn}-H2`) {
           position.x = j;
           position.y = i;
         }
       }
     }
-    game.board[position.y][position.x] = null;
-    moveHero2(position, move.move.toUpperCase());
-    game.board[position.y][position.x] = `A-H2`;
-    console.log(game.board);
+    if(position.x !== null && position.y !== null){
+      game.board[position.y][position.x] = null;
+      moveHero2(position, move.move.toUpperCase(), game.turn);
+      game.board[position.y][position.x] = `${game.turn}-H2`;
+      console.log(game.board);
+    }
   }
 
   game.winner = checkWin(game, move);
-  // game.board[move.i][move.j] = game.turn;
-  // console.log(game.winner,"is the winner");
-  // game.turn = game.turn === 'A' ? 'B' : 'A';
+  console.log(game.winner, 'is the winner');
+  game.turn = game.turn === 'A' ? 'B' : 'A';
   return game;
 }
 
