@@ -109,7 +109,8 @@ const App = () => {
           </button>
         </div>
       )}
-      {gameState && <ChessBoard board={gameState.board} makeMove={makeMove} />}
+      {gameState && <p className='mb-4 font-bold text-lg'>Turn: {gameState.turn}</p>}
+      {gameState && <div className={`${gameState.turn ==='A'?'shadow-green-500  shadow-2xl':'shadow-red-500 shadow-2xl'}`}><ChessBoard board={gameState.board} makeMove={makeMove} /></div>}
       {gameState && <Player />}
     </div>
   );
