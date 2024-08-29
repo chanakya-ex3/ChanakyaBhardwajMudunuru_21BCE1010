@@ -14,7 +14,7 @@ cd ChanakyaBhardwajMudunuru_21BCE1010
 ```sh
 cd backend
 npm i
-nodemon index.js
+node index.js
 ```
 
 ### Step 3: Setup frontend
