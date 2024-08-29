@@ -32,54 +32,93 @@ function checkWin(game, move) {
   }
 }
 
-function movePawn(position, direction, turn) {
+function movePawn(board, position, direction, turn) {
   if (turn === 'A') {
     switch (direction) {
       case 'L':
         if (position.x > 0) {
-          position.x -= 1;
+          if (
+            board[position.y][position.x - 1] === null ||
+            board[position.y][position.x - 1].charAt(0) !== turn
+          ) {
+            position.x -= 1;
+          }
         }
         break;
       case 'R':
         if (position.x < 4) {
-          position.x += 1;
+          if (
+            board[position.y][position.x + 1] === null ||
+            board[position.y][position.x + 1].charAt(0) !== turn
+          ) {
+            position.x += 1;
+          }
         }
         break;
       case 'F':
         if (position.y < 4) {
-          position.y += 1;
+          if (
+            board[position.y + 1][position.x] === null ||
+            board[position.y + 1][position.x].charAt(0) !== turn
+          ) {
+            position.y += 1;
+          }
         }
         break;
       case 'B':
         if (position.y > 0) {
-          position.y -= 1;
+          if (
+            board[position.y - 1][position.x] === null ||
+            board[position.y - 1][position.x].charAt(0) !== turn
+          ) {
+            position.y -= 1;
+          }
         }
         break;
       default:
         console.error('Invalid direction for Pawn:', direction);
         return;
     }
-  }
-  else{
+  } else {
     switch (direction) {
       case 'L':
         if (position.x > 0) {
-          position.x -= 1;
+          if (
+            board[position.y][position.x - 1] === null ||
+            board[position.y][position.x - 1].charAt(0) !== turn
+          ) {
+            position.x -= 1;
+          }
         }
         break;
       case 'R':
         if (position.x < 4) {
-          position.x += 1;
+          if (
+            board[position.y][position.x + 1] === null ||
+            board[position.y][position.x + 1].charAt(0) !== turn
+          ) {
+            position.x += 1;
+          }
         }
         break;
       case 'F':
         if (position.y > 0) {
-          position.y -= 1;
+          if (
+            board[position.y - 1][position.x] === null ||
+            board[position.y - 1][position.x].charAt(0) !== turn
+          ) {
+            position.y -= 1;
+          }
         }
         break;
       case 'B':
         if (position.y < 4) {
-          position.y += 1;
+          if (
+            board[position.y + 1][position.x] === null ||
+            board[position.y + 1][position.x].charAt(0) !== turn
+          ) {
+            position.y += 1;
+          }
         }
         break;
       default:
@@ -89,54 +128,93 @@ function movePawn(position, direction, turn) {
   }
 }
 
-function moveHero1(position, direction, turn) {
-  if(turn === 'A'){
+function moveHero1(board, position, direction, turn) {
+  if (turn === 'A') {
     switch (direction) {
       case 'L':
         if (position.x > 1) {
-          position.x -= 2;
+          if (
+            board[position.y][position.x - 2] === null ||
+            board[position.y][position.x - 2].charAt(0) !== turn
+          ) {
+            position.x -= 2;
+          }
         }
         break;
       case 'R':
         if (position.x < 3) {
-          position.x += 2;
+          if (
+            board[position.y][position.x + 2] === null ||
+            board[position.y][position.x + 2].charAt(0) !== turn
+          ) {
+            position.x += 2;
+          }
         }
         break;
       case 'F':
         if (position.y < 3) {
-          position.y += 2;
+          if (
+            board[position.y + 2][position.x] === null ||
+            board[position.y + 2][position.x].charAt(0) !== turn
+          ) {
+            position.y += 2;
+          }
         }
         break;
       case 'B':
         if (position.y > 1) {
-          position.y -= 2;
+          if (
+            board[position.y - 2][position.x] === null ||
+            board[position.y - 2][position.x].charAt(0) !== turn
+          ) {
+            position.y -= 2;
+          }
         }
         break;
       default:
         console.error('Invalid direction for Hero1:', direction);
         return;
     }
-  }
-  else{
+  } else {
     switch (direction) {
       case 'L':
         if (position.x > 1) {
-          position.x -= 2;
+          if (
+            board[position.y][position.x - 2] === null ||
+            board[position.y][position.x - 2].charAt(0) !== turn
+          ) {
+            position.x -= 2;
+          }
         }
         break;
       case 'R':
         if (position.x < 3) {
-          position.x += 2;
+          if (
+            board[position.y][position.x + 2] === null ||
+            board[position.y][position.x + 2].charAt(0) !== turn
+          ) {
+            position.x += 2;
+          }
         }
         break;
       case 'F':
         if (position.y > 1) {
-          position.y -= 2;
+          if (
+            board[position.y - 2][position.x] === null ||
+            board[position.y - 2][position.x].charAt(0) !== turn
+          ) {
+            position.y -= 2;
+          }
         }
         break;
       case 'B':
         if (position.y < 3) {
-          position.y += 2;
+          if (
+            board[position.y + 2][position.x] === null ||
+            board[position.y + 2][position.x].charAt(0) !== turn
+          ) {
+            position.y += 2;
+          }
         }
         break;
       default:
@@ -146,62 +224,101 @@ function moveHero1(position, direction, turn) {
   }
 }
 
-function moveHero2(position, direction, turn) {
-  if(turn === 'A'){
+function moveHero2(board, position, direction, turn) {
+  if (turn === 'A') {
     switch (direction) {
       case 'FL':
-        if (position.x > 0 && position.y < 3) {
-          position.x -= 1;
-          position.y += 1;
+        if (position.x > 0 && position.y < 4) {
+          if (
+            board[position.y + 1][position.x - 1] === null ||
+            board[position.y + 1][position.x - 1].charAt(0) !== turn
+          ) {
+            position.x -= 1;
+            position.y += 1;
+          }
         }
         break;
       case 'FR':
-        if (position.x < 3 && position.y < 3) {
-          position.x += 1;
-          position.y += 1;
+        if (position.x < 4 && position.y < 4) {
+          if (
+            board[position.y + 1][position.x + 1] === null ||
+            board[position.y + 1][position.x + 1].charAt(0) !== turn
+          ) {
+            position.x += 1;
+            position.y += 1;
+          }
         }
         break;
       case 'BL':
         if (position.x > 0 && position.y > 0) {
-          position.x -= 1;
-          position.y -= 1;
+          if (
+            board[position.y - 1][position.x - 1] === null ||
+            board[position.y - 1][position.x - 1].charAt(0) !== turn
+          ) {
+            position.x -= 1;
+            position.y -= 1;
+          }
         }
         break;
       case 'BR':
-        if (position.x < 3 && position.y > 0) {
-          position.x += 1;
-          position.y -= 1;
+        if (position.x < 4 && position.y > 0) {
+          if (
+            board[position.y - 1][position.x + 1] === null ||
+            board[position.y - 1][position.x + 1].charAt(0) !== turn
+          ) {
+            position.x += 1;
+            position.y -= 1;
+          }
         }
         break;
       default:
         console.error('Invalid direction for Hero2:', direction);
         return;
     }
-  }
-  else{
+  } else {
     switch (direction) {
       case 'FL':
-        if (position.x > 0 && position.y > 1) {
-          position.x -= 1;
-          position.y -= 1;
+        if (position.x > 0 && position.y > 0) {
+          if (
+            board[position.y - 1][position.x - 1] === null ||
+            board[position.y - 1][position.x - 1].charAt(0) !== turn
+          ) {
+            position.x -= 1;
+            position.y -= 1;
+          }
         }
         break;
       case 'FR':
-        if (position.x < 3 && position.y > 1) {
-          position.x += 1;
-          position.y -= 1;
+        if (position.x < 4 && position.y > 0) {
+          if (
+            board[position.y - 1][position.x + 1] === null ||
+            board[position.y - 1][position.x + 1].charAt(0) !== turn
+          ) {
+            position.x += 1;
+            position.y -= 1;
+          }
         }
         break;
       case 'BL':
-        if (position.x > 0 && position.y < 3) {
-          position.x -= 1;
-          position.y += 1;
+        if (position.x > 0 && position.y < 4) {
+          if (
+            board[position.y + 1][position.x - 1] === null ||
+            board[position.y + 1][position.x - 1].charAt(0) !== turn
+          ) {
+            position.x -= 1;
+            position.y += 1;
+          }
         }
         break;
       case 'BR':
-        if (position.x < 3 && position.y < 3) {
-          position.x += 1;
-          position.y += 1;
+        if (position.x < 4 && position.y < 4) {
+          if (
+            board[position.y + 1][position.x + 1] === null ||
+            board[position.y + 1][position.x + 1].charAt(0) !== turn
+          ) {
+            position.x += 1;
+            position.y += 1;
+          }
         }
         break;
       default:
@@ -227,9 +344,9 @@ function play(game, move) {
         }
       }
     }
-    if(position.x !== null && position.y !== null){
+    if (position.x !== null && position.y !== null) {
       game.board[position.y][position.x] = null;
-      movePawn(position, move.move.toUpperCase(), game.turn);
+      movePawn(game.board, position, move.move.toUpperCase(), game.turn);
       game.board[position.y][position.x] = `${game.turn}-P${move.character}`;
       console.log(game.board);
     }
@@ -244,9 +361,9 @@ function play(game, move) {
         }
       }
     }
-    if(position.x !== null && position.y !== null){
+    if (position.x !== null && position.y !== null) {
       game.board[position.y][position.x] = null;
-      moveHero1(position, move.move.toUpperCase(), game.turn);
+      moveHero1(game.board, position, move.move.toUpperCase(), game.turn);
       game.board[position.y][position.x] = `${game.turn}-H1`;
       console.log(game.board);
     }
@@ -261,9 +378,9 @@ function play(game, move) {
         }
       }
     }
-    if(position.x !== null && position.y !== null){
+    if (position.x !== null && position.y !== null) {
       game.board[position.y][position.x] = null;
-      moveHero2(position, move.move.toUpperCase(), game.turn);
+      moveHero2(game.board, position, move.move.toUpperCase(), game.turn);
       game.board[position.y][position.x] = `${game.turn}-H2`;
       console.log(game.board);
     }
