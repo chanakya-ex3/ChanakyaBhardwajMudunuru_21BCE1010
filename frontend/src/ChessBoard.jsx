@@ -1,11 +1,12 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect } from 'react';
+import { useState,useEffect } from 'react';
 
-const ChessBoard = ({ board, makeMove }) => {
+const ChessBoard = ({ board, makeMove, player }) => {
   let movement = { move: '' };
-
+  const [boardState, setBoardState] = useState(board);
   useEffect(() => {
+    setBoardState(player=='A'?board.reverse():board);
     const handleKeyDown = (event) => {
       if (
         event.key === '1' ||
@@ -40,8 +41,7 @@ const ChessBoard = ({ board, makeMove }) => {
         movement = { move: '' };
       }
       if (event.key === 'Enter') {
-        console.log(movement);
-          makeMove(movement);
+        makeMove(movement);
         movement = { move: '' };
       }
     };
@@ -49,22 +49,22 @@ const ChessBoard = ({ board, makeMove }) => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  });
+  },[board,makeMove,player]);
   return (
     <div className='grid grid-cols-5 gap-1 bg-gray-800 p-2'>
-      {board.flat().map((piece, index) => (
+      {boardState.flat().map((piece, index) => (
         <div
           key={index}
           className={`w-[100px] h-[100px] flex items-center justify-center text-xl 
                                 border border-gray-600  ${
                                   String(
-                                    board[parseInt(index / 5)][
+                                    boardState[parseInt(index / 5)][
                                       parseInt(index % 5)
                                     ]
                                   ).substring(0, 1) === 'A'
                                     ? 'bg-green-400'
                                     : String(
-                                        board[parseInt(index / 5)][
+                                        boardState[parseInt(index / 5)][
                                           parseInt(index % 5)
                                         ]
                                       ).substring(0, 1) === 'B'
@@ -74,7 +74,7 @@ const ChessBoard = ({ board, makeMove }) => {
                                     : 'bg-gray-400'
                                 }`}
         >
-          {board[parseInt(index / 5)][parseInt(index % 5)]}
+          {boardState[parseInt(index / 5)][parseInt(index % 5)]}
         </div>
       ))}
     </div>

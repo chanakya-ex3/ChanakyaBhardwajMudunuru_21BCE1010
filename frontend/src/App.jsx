@@ -7,7 +7,7 @@ const socket = io('http://localhost:3000');
 const App = () => {
   const [gameId, setGameId] = useState('');
   const [gameState, setGameState] = useState(null);
-  const [playerNumber, setPlayerNumber] = useState('A');
+  const [playerNumber, setPlayerNumber] = useState('');
   const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const App = () => {
     socket.on('fullGame', (message) => {
       alert(message);
     });
-  }, []);
+  }, [playerNumber]);
 
   const createGame = () => {
     const id = Math.random().toString(36).substring(2, 7);
@@ -45,10 +45,9 @@ const App = () => {
     document.body.removeChild(textarea);
   }
 
-  const makeMove = ( moveData ) => {
+  const makeMove = (moveData) => {
     if (gameState.turn !== playerNumber) return;
-    console.log(moveData);
-    socket.emit('makeMove', { gameId: gameId, move:  moveData  });
+    socket.emit('makeMove', { gameId: gameId, move: moveData });
   };
   if (gameState && gameState.winner) {
     if (gameState.winner === playerNumber) {
@@ -88,6 +87,13 @@ const App = () => {
           </div>
         </>
       )}
+      {!gameStarted && (
+        <div className='flex gap-2'>
+          <div>Simply press</div>
+          <div className='px-2 bg-black w-fit rounded-sm'>Enter</div>
+          <div>{`To Skip your turn (Created For Development/Testing Purpose)`}</div>
+        </div>
+      )}
       {gameState && (
         <h1
           className={`mb-4 ${
@@ -109,8 +115,24 @@ const App = () => {
           </button>
         </div>
       )}
-      {gameState && <p className='mb-4 font-bold text-lg'>Turn: {gameState.turn}</p>}
-      {gameState && <div className={`${gameState.turn ==='A'?'shadow-green-500  shadow-2xl':'shadow-red-500 shadow-2xl'}`}><ChessBoard board={gameState.board} makeMove={makeMove} /></div>}
+      {gameState && (
+        <p className='mb-4 font-bold text-lg'>Turn: {gameState.turn}</p>
+      )}
+      {gameState && (
+        <div
+          className={`${
+            gameState.turn === 'A'
+              ? 'shadow-green-500  shadow-2xl'
+              : 'shadow-red-500 shadow-2xl'
+          }`}
+        >
+          <ChessBoard
+            board={gameState.board}
+            makeMove={makeMove}
+            player={playerNumber}
+          />
+        </div>
+      )}
       {gameState && <Player />}
     </div>
   );
