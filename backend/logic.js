@@ -8,6 +8,7 @@ function startGame() {
       ['B-P3', 'B-H2', 'B-H1', 'B-P2', 'B-P1'],
     ],
     turn: 'A',
+    moves:[]
   };
 }
 
@@ -30,6 +31,21 @@ function checkWin(game, move) {
   if (playerB && !playerA) {
     return 'B';
   }
+}
+function pushMove(game, move,turn) {
+  const newMove = {}
+  if(move.character === '1' || move.character === '2' || move.character === '3'){
+    newMove.character = turn+'-'+'P'+move.character;
+  }
+  else if(move.character === '4'){
+    newMove.character = turn+'-'+'H1';
+  }
+  else if(move.character === '5'){
+    newMove.character= turn+'-'+'H2';
+  }
+  newMove.move = move.move;
+  game.moves.push(newMove);
+  return game;
 }
 
 function movePawn(board, position, direction, turn) {
@@ -347,6 +363,7 @@ function play(game, move) {
     if (position.x !== null && position.y !== null) {
       game.board[position.y][position.x] = null;
       movePawn(game.board, position, move.move.toUpperCase(), game.turn);
+      pushMove(game, move,game.turn);
       game.board[position.y][position.x] = `${game.turn}-P${move.character}`;
       console.log(game.board);
     }
@@ -364,6 +381,7 @@ function play(game, move) {
     if (position.x !== null && position.y !== null) {
       game.board[position.y][position.x] = null;
       moveHero1(game.board, position, move.move.toUpperCase(), game.turn);
+      pushMove(game, move,game.turn);
       game.board[position.y][position.x] = `${game.turn}-H1`;
       console.log(game.board);
     }
@@ -381,6 +399,7 @@ function play(game, move) {
     if (position.x !== null && position.y !== null) {
       game.board[position.y][position.x] = null;
       moveHero2(game.board, position, move.move.toUpperCase(), game.turn);
+      pushMove(game, move,game.turn);
       game.board[position.y][position.x] = `${game.turn}-H2`;
       console.log(game.board);
     }
