@@ -2,19 +2,7 @@
 const Player = ({ gameState }) => {
   return (
     <div className="flex flex-col items-center justify-center m-10 gap-2">
-      <div className="p-2 rounded-md bg-violet-500 flex flex-col font-bold text-lg pb-1 gap-2 w-[300px] h-[200px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300">
-        <h1 className="text-center font-bold text-lg">Moves</h1>
-        <div className="flex flex-col gap-2 text-base">
-          {gameState.moves.map((move, index) => (
-            <div key={index} className="flex gap-2">
-              <p className="font-bold">{index + 1}.</p>
-              <p className="uppercase font-bold">{move.character}</p>
-              <p className="font-bold">to </p>
-              <p className="uppercase font-bold">{move.move}</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      
       <div className=" p-4  rounded-xl flex flex-row gap-10 items-start justify-start">
         <div className="p-2 rounded-md bg-violet-500">
           {" "}
@@ -68,6 +56,19 @@ const Player = ({ gameState }) => {
             <div>4. press</div>
             <div className="px-2 bg-black w-fit rounded-sm">Enter</div>
           </div>
+        </div>
+      </div>
+      <div className="p-2 rounded-md bg-violet-500 flex flex-col font-bold text-lg pb-1 gap-2 w-[300px] h-[200px] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-300">
+        <h1 className="text-center font-bold text-lg">Moves</h1>
+        <div className="flex flex-col gap-2 text-base">
+          {gameState.moves.map((move, index) => (
+            <div key={index} className="flex gap-2">
+              <p className="font-bold">{index + 1}.</p>
+              <p className="uppercase font-bold">{move.character}</p>
+              <p className="font-bold">to </p>
+              <p className="uppercase font-bold">{move.move}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

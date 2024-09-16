@@ -9,12 +9,12 @@ const PORT = process.env.PORT || 3000;
 
 const io = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:5173',
+    origin: true,
     methods: ['GET', 'POST'],
     credentials: true,
   },
 });
-const { startGame, play } = require('./logic');
+const { startGame, play } = require('./gameManager');
 const players = [];
 let games = {};
 
